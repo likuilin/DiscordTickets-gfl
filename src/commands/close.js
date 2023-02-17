@@ -66,13 +66,13 @@ module.exports = {
 			json: join(__dirname, `../../user/transcripts/raw/entities/${ticket.get('channel')}.json`)
 		};
 
-		if (message.author.id !== ticket.creator && !message.member.roles.cache.has(config.staff_role))
+		if (!message.member.roles.cache.has(config.staff_role))
 			return message.channel.send(
 				new MessageEmbed()
 					.setColor(config.err_colour)
 					.setAuthor(message.author.username, message.author.displayAvatarURL())
 					.setTitle('❌ **No permission**')
-					.setDescription(`You don't have permission to close ${channel} as it does not belong to you and you are not staff.`)
+					.setDescription(`You don't have permission to close ${channel} as you are not staff.`)
 					.addField('Usage', `\`${config.prefix}${this.name} ${this.usage}\`\n`)
 					.addField('Help', `Type \`${config.prefix}help ${this.name}\` for more information`)
 					.setFooter(guild.name, guild.iconURL())
